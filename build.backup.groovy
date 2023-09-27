@@ -20,10 +20,6 @@ pipeline{
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus"
 
-        GITHUB_CREDENTIAL_ID = "github"
-
-        GITHUB_REPOSITORY_URL = "git@github.com:exetosas/holamundose.git"
-
         // Workfolder
         //WORKFOLDER = "/usr/jenkins/node_agent/workspace"
     }
@@ -31,7 +27,7 @@ pipeline{
     stages{
         stage('Checkout'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: GITHUB_CREDENTIAL_ID, url: GITHUB_REPOSITORY_URL ]]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'Github', url: 'git@github.com:calamza/holamundo.git']]])
             }
         }
         stage('Build artifact'){
